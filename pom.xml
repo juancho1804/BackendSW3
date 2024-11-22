@@ -10,6 +10,7 @@
 
     <modules>
         <module>competencias-rap-service</module>
+	<module>rubrica-criterio-service</module>
     </modules>
 
     <properties>
