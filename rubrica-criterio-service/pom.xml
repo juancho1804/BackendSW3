@@ -3,15 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>org.unicauca</groupId>
+		<artifactId>BackendSW3</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.unicauca.rest</groupId>
-	<artifactId>springBootRest</artifactId>
+	<artifactId>rubrica-criterio-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springBootRest</name>
+	<name>rubrica-criterio-service</name>
 	<description>api rest rubrica criterio</description>
 	<url/>
 	<licenses>
@@ -60,6 +58,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>java-dotenv</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -74,6 +82,14 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
