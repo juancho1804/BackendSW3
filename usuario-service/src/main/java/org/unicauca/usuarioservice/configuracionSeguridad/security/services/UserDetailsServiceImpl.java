@@ -12,7 +12,7 @@ import org.unicauca.usuarioservice.configuracionSeguridad.accesoADatos.repositor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
   @Autowired
-  IUserRepository userRepository;
+  IUserRepository userRepository; //
 
   @Override
   @Transactional
