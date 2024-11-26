@@ -17,7 +17,7 @@ public class Rap {
     private int id;
     @Column(nullable = false)
     private String descripcion;
-    @OneToOne(fetch = FetchType.LAZY) // Relación de muchos a uno con Competencia
+    @ManyToOne(fetch = FetchType.LAZY) // Relación de muchos a uno con Competencia
     @JoinColumn(name = "competencia_id", nullable = false) // Nombre de la columna FK
     private Competencia competencia;
 

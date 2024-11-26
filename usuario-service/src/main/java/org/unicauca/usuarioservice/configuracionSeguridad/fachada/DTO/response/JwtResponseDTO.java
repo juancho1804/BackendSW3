@@ -6,15 +6,15 @@ public class JwtResponseDTO {
     private String token;
     private String type = "Bearer";
     private Long id;
-    private String username;
     private String email;
+    private String contrasenia;
     private List<String> roles;
 
-    public JwtResponseDTO(String accessToken, Long id, String username, String email, List<String> roles) {
+    public JwtResponseDTO(String accessToken, Long id, String email, String contrasenia, List<String> roles) {
         this.token = accessToken;
         this.id = id;
-        this.username = username;
         this.email = email;
+        this.contrasenia = contrasenia;
         this.roles = roles;
     }
 
@@ -50,12 +50,12 @@ public class JwtResponseDTO {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public List<String> getRoles() {

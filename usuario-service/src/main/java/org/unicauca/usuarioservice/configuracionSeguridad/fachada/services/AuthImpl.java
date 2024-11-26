@@ -48,7 +48,7 @@ public class AuthImpl implements AuthInt{
     @Override
     public JwtResponseDTO authenticateUser(LoginRequestDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -61,7 +61,7 @@ public class AuthImpl implements AuthInt{
         return new JwtResponseDTO(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
-                userDetails.getEmail(),
+                userDetails.getPassword(),
                 roles);
     }
 
@@ -75,6 +75,7 @@ public class AuthImpl implements AuthInt{
 
 
         String strTipoIdentificacion=signUpRequest.getTipoIdentificacion();
+        System.out.println(strTipoIdentificacion);
 
         switch (strTipoIdentificacion){
             case "TARJETA_IDENTIDAD":
