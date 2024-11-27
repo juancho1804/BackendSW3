@@ -20,4 +20,5 @@ public class Competencia {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Nivel nivel;
+
 }

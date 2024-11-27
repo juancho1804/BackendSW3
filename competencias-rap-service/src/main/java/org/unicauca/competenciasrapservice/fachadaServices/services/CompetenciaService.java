@@ -11,6 +11,7 @@ import org.unicauca.competenciasrapservice.fachadaServices.DTO.CompetenciaDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CompetenciaService implements ICompetenciaService{
@@ -69,6 +70,29 @@ public class CompetenciaService implements ICompetenciaService{
         } else {
             throw new EntityNotFoundException("La competencia con el ID " + id + " no existe");
         }
+    }
+    @Override
+    public List<Competencia> obtenerCompetenciasPorIds(List<Integer> ids) {
+        return competenciaRepositorio.findAllById(ids);
+    }
+    /**
+     * Valida una lista de IDs de competencias.
+     *
+     * @param ids Lista de IDs de competencias a validar.
+     * @return Lista de competencias válidas.
+     */
+    @Override
+    public List<CompetenciaDTO> validarCompetencias(List<Integer> ids) {
+        List<Competencia> competencias = competenciaRepositorio.findAllById(ids);
+
+        // Convertir entidades a DTOs
+        return competencias.stream()
+                .map(competencia -> new CompetenciaDTO(
+                        competencia.getId(),
+                        competencia.getDescripcion(),
+                        competencia.getNivel()
+                ))
+                .collect(Collectors.toList());
     }
 
 

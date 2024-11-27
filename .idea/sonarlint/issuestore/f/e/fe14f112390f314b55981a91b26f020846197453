@@ -1,0 +1,11 @@
+
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‚ŠšÕ¶2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‚ŠšÕ¶2
+I
+java:S1905"'Remove this unnecessary cast to "List".(€Ùû’øÿÿÿÿ8†ŠšÕ¶2
+L	java:S106*"+Replace this use of System.out by a logger.(ÀíÉ²ıÿÿÿÿ8ŒŠšÕ¶2
+G	java:S106+"+Replace this use of System.out by a logger.(ÖİË8ŒŠšÕ¶2
+G	java:S106-"+Replace this use of System.out by a logger.(–Í¢ö8ŒŠšÕ¶2
+]	java:S125D"<This block of commented-out lines of code should be removed.( ¹ƒùÿÿÿÿ8ŠšÕ¶2
