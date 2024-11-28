@@ -1,0 +1,29 @@
+
+v
+java:S1488)"`Immediately return this expression instead of assigning it to the temporary variable "criterio".(Ÿ°¨Õ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+I
+java:S6837"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837&"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S68375"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837D"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837S"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+c
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ííõÖùÿÿÿÿ
+M
+java:S1135"2Complete the task associated to this TODO comment.(¢ëëùÿÿÿÿ
+B
+java:S1905"'Remove this unnecessary cast to "List".(·¥ôûÿÿÿÿ
+^
+java:S4488%"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ê€ì
+e
+java:S44884"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Œ©³ıúÿÿÿÿ
+c
+java:S4488C"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ƒÆèûÿÿÿÿ
+c
+java:S4488R"NReplace "@RequestMapping(method = RequestMethod.DELETE)" with "@DeleteMapping"(°Æ¥F

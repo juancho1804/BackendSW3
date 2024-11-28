@@ -1,0 +1,36 @@
+
+¤
+java:S1488,"bImmediately return this expression instead of assigning it to the temporary variable "asignatura".(¦Ò®8ë›÷¶2J$17add522-3a24-4a0e-93fa-bdb68a0c183e
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Â©Øá¶2J$a10a527f-5b18-47e9-b2c0-886f5e1f96ec
+v
+java:S6837"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8Ä©Øá¶2J$d48580a0-eadb-4942-9198-390ab7f0126d
+v
+java:S6837)"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8Ä©Øá¶2J$8c6c57fc-8b82-4335-96e7-90ef88f75627
+v
+java:S6837K"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8Ä©Øá¶2J$a4d30638-dd3b-4e3d-8b6f-0127965eeed2
+v
+java:S6837Z"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8Ä©Øá¶2J$b1f86787-0bed-4365-88cc-9ea915fb1bcb
+v
+java:S6837i"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8Ä©Øá¶2J$e3c3cd89-0d6b-4bb2-ba05-3cb8a2b50747
+v
+java:S6837u"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼8õ›÷¶2J$76e221b9-8873-4332-ab05-3e957a0b75c2
+
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ííõÖùÿÿÿÿ8Æ©Øá¶2J$131d06c7-59e6-4d41-90b5-e08901ee3656
+z
+java:S1135"2Complete the task associated to this TODO comment.(¢ëëùÿÿÿÿ8Ç©Øá¶2J$564c61d4-7126-4f4e-a021-83e60697ab29
+o
+java:S1905"'Remove this unnecessary cast to "List".(‘’„êıÿÿÿÿ8É©Øá¶2J$754e896e-392d-44e6-bd99-3c94c0056f0c
+‹
+java:S4488("HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ê€ì8Ì©Øá¶2J$18cfedef-57a5-4726-bea6-89e3458e181c
+‹
+java:S4488/"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(û¬éÀ8Í©Øá¶2J$0d76b960-bb5c-4e7f-881f-28b1612b8175
+’
+java:S4488J"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Œ©³ıúÿÿÿÿ8Ï©Øá¶2J$3fd4a07d-79e6-454a-9044-d3adf927ca57
+ƒ	java:S125?"<This block of commented-out lines of code should be removed.(¹‘Âªÿÿÿÿÿ8äªÜá¶2J$726d58b1-d905-4eec-b72d-de9c6a2d4a4a
+
+java:S4488Y"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ƒÆèûÿÿÿÿ8‚‚›÷¶2J$b8f2f859-cefc-4740-b925-efbb8d6ee174
+
+java:S4488h"NReplace "@RequestMapping(method = RequestMethod.DELETE)" with "@DeleteMapping"(°Æ¥F8Î©Øá¶2J$b2472b97-8496-49f7-bbff-ceaa7e407fdc
+‹
+java:S4488t"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(Ú‘ïÒ8¹½§÷¶2J$22f9f05f-8fd9-4f5b-b0eb-636a4e649e55

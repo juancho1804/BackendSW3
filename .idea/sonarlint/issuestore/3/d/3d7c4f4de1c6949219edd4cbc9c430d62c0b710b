@@ -1,0 +1,40 @@
+
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+I
+java:S6837"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837,"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S68379"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837P"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837`"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+I
+java:S6837n"3Remove this superfluous "@ResponseBody" annotation.(Ü¥¼
+c
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ííõÖùÿÿÿÿ
+M
+java:S1135"2Complete the task associated to this TODO comment.(¢ëëùÿÿÿÿ
+=
+java:S1905!"'Remove this unnecessary cast to "List".(’£—·
+^
+java:S4488+"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ê€ì
+C
+java:S22011"(The return value of "size" must be used.(•ı¸êıÿÿÿÿ
+c
+java:S44888"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ó±Å¹üÿÿÿÿ
+E	java:S106;"+Replace this use of System.out by a logger.(ş÷ĞÚúÿÿÿÿ
+E	java:S106>"+Replace this use of System.out by a logger.(ÕË¦¨ıÿÿÿÿ
+@	java:S106A"+Replace this use of System.out by a logger.(´™ªØ
+e
+java:S4488O"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Œ©³ıúÿÿÿÿ
+c
+java:S4488_"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ƒÆèûÿÿÿÿ
+c
+java:S4488m"NReplace "@RequestMapping(method = RequestMethod.DELETE)" with "@DeleteMapping"(°Æ¥F
+A
+java:S1452t"&Remove usage of generic wildcard type.(¶Ñ¿ïûÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'com.unicauca.rest.entities.Criterio'.(ì‹¾øÿÿÿÿ

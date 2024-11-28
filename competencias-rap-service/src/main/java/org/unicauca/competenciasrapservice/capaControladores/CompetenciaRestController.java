@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unicauca.competenciasrapservice.capaAccesoADatos.models.Competencia;
 import org.unicauca.competenciasrapservice.fachadaServices.DTO.CompetenciaDTO;
 import org.unicauca.competenciasrapservice.fachadaServices.services.ICompetenciaService;
 
@@ -47,4 +48,22 @@ public class CompetenciaRestController {
         ResponseEntity<Boolean> response = new ResponseEntity<>(resp, HttpStatus.NO_CONTENT);
         return response;
     }
+    /*
+    @PostMapping("/validar")
+    public ResponseEntity<List<Competencia>> validarCompetencias(@RequestBody List<Integer> ids) {
+        List<Competencia> competencias = competenciaService.validarCompetencias(ids);
+        return ResponseEntity.ok(competencias);
+    }*/
+    /**
+     * Valida una lista de IDs de competencias.
+     *
+     * @param ids Lista de IDs de competencias a validar.
+     * @return Lista de competencias válidas.
+     */
+    @PostMapping("/validar")
+    public ResponseEntity<List<CompetenciaDTO>> validarCompetencias(@RequestBody List<Integer> ids) {
+        List<CompetenciaDTO> competenciasValidas = competenciaService.validarCompetencias(ids);
+        return ResponseEntity.ok(competenciasValidas);
+    }
+
 }
