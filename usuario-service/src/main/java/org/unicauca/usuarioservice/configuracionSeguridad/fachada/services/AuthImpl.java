@@ -68,7 +68,7 @@ public class AuthImpl implements AuthInt{
     @Override
     public MessageResponseDTO registerUser(SignupRequestDTO signUpRequest) {
 
-        User user = new User(signUpRequest.getIdentificacion(),signUpRequest.getNombres(),signUpRequest.getApellidos(),signUpRequest.getEmail(),signUpRequest.getTitulo(),signUpRequest.getEstado(),encoder.encode(signUpRequest.getContrasenia()));
+        User user = new User(signUpRequest.getIdentificacion(),signUpRequest.getNombres(),signUpRequest.getApellidos(),signUpRequest.getEmail(),encoder.encode(signUpRequest.getContrasenia()));
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -96,7 +96,12 @@ public class AuthImpl implements AuthInt{
 
         }
 
-        strRoles.forEach(role -> {
+        if(strRoles == null){
+            Role docenteRole = roleRepository.findByName(ERole.ROLE_DOCENTE)
+                    .orElseThrow(() -> new RuntimeException("Role no encontrado"));
+            roles.add(docenteRole);
+        }else{
+            strRoles.forEach(role -> {
                 switch (role) {
                     case "docente":
                         Role docenteRole = roleRepository.findByName(ERole.ROLE_DOCENTE)
@@ -110,6 +115,7 @@ public class AuthImpl implements AuthInt{
                         break;
                 }
             });
+        }
 
 
         user.setRoles(roles);

@@ -11,6 +11,7 @@
         <module>competencias-rap-service</module>
 	    <module>rubrica-criterio-service</module>
         <module>microservice-asginatura</module>
+        <module>usuario-service</module>
     </modules>
     <properties>
         <java.version>17</java.version>

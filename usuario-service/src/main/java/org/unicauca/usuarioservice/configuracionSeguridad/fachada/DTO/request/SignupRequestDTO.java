@@ -23,10 +23,7 @@ public class SignupRequestDTO {
    @NotBlank
     @Email
    private String email;
-   @NotBlank
-   private String titulo;
-   @NotBlank
-   private String estado;
+
    @NotBlank
    private String contrasenia;
 

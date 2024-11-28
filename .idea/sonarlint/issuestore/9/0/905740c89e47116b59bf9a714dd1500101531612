@@ -1,15 +1,0 @@
-
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿìüö¶2J$df447452-7643-4e28-bbbc-1c15a9a111b5
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿìüö¶2J$1ddc678a-74d8-4511-bc4f-80889740932a
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(£å¬¾úÿÿÿÿ8ƒíüö¶2J$bda49e26-8218-4d8b-8e26-a62cfdd142f0
-j
-java:S1905$"'Remove this unnecessary cast to "List".(ßÚ¼Ñ8ƒíüö¶2J$3ef3453c-c6eb-4b5d-99b7-6cb270c8b875
-r	java:S106)"+Replace this use of System.out by a logger.(ÜÖßşÿÿÿÿ8…íüö¶2J$2df38880-2d4e-4e53-9b02-aebdcec5a490
-m	java:S106J"+Replace this use of System.out by a logger.(Ê®òö8Šíüö¶2J$f74d1aaa-6446-4437-9d87-e8db2d9b4518
-m	java:S106K"+Replace this use of System.out by a logger.(™ç“ª8‹íüö¶2J$d314c25c-c606-4118-b362-21b5d1d64730
-r	java:S106M"+Replace this use of System.out by a logger.(æğ½Üúÿÿÿÿ8‹íüö¶2J$e0a0e714-09d6-4f38-9709-3537eafa795a
-ƒ	java:S125d"<This block of commented-out lines of code should be removed.( ¹ƒùÿÿÿÿ8íüö¶2J$a370bd71-d022-4475-83ef-9112bd0e8477
-r	java:S106{"+Replace this use of System.out by a logger.(à¿óüÿÿÿÿ8íüö¶2J$682110bd-11bf-4325-bd68-172b7248e87b
-„	java:S125‡"<This block of commented-out lines of code should be removed.(€¡ˆùÿÿÿÿ8íüö¶2J$a423ba04-a9e7-482c-af7c-ca65c3ff18ae

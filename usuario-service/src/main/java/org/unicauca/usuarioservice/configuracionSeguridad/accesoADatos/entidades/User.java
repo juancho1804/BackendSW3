@@ -29,28 +29,17 @@ public class User {
     @Size(min = 2, max = 15)
     private String identificacion;
 
-
-
     @Size(max = 20)
     private String nombres;
 
-
     @Size(max = 20)
     private String apellidos;
-
 
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
 
-    @NotBlank
-    @Size(max = 20)
-    private String titulo;
-
-    @NotBlank
-    @Size(max = 20)
-    private String estado;
 
     @NotBlank
     @Size(max = 120)
@@ -65,13 +54,11 @@ public class User {
     public User() {
     }
 
-    public User(String identificacion, String nombres, String apellidos, String email, String title, String state, String password) {
+    public User(String identificacion, String nombres, String apellidos, String email, String password) {
         this.identificacion = identificacion;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.email = email;
-        this.titulo = title;
-        this.estado = state;
         this.contrasenia = password;
     }
 

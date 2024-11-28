@@ -27,6 +27,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequestDTO signUpRequest) {
         System.out.println("entrando a crear usuario");
+        System.out.println("Solicitud recibida con "+signUpRequest.getEmail());
         MessageResponseDTO mensajeRespuesta=this.objAuthImpl.registerUser(signUpRequest);
         return ResponseEntity.ok(mensajeRespuesta);
     }
