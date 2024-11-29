@@ -5,6 +5,8 @@ import org.unicauca.docenteservice.capaAccesoADatos.models.EEstado;
 import org.unicauca.docenteservice.capaAccesoADatos.models.ETipoDocente;
 import org.unicauca.docenteservice.capaAccesoADatos.models.ETipoIdentificacion;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -20,4 +22,5 @@ public class DocenteDTO {
     private EEstado estado;
     private String contrasenia;
     private ETipoDocente tipoDocente;
+    private List<Integer>asignaturas;
 }

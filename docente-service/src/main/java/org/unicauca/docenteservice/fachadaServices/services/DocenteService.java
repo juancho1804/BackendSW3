@@ -9,9 +9,11 @@ import org.unicauca.docenteservice.capaAccesoADatos.models.Docente;
 import org.unicauca.docenteservice.capaAccesoADatos.models.EEstado;
 import org.unicauca.docenteservice.capaAccesoADatos.repositories.IDocenteRepository;
 import org.unicauca.docenteservice.fachadaServices.DTO.DocenteDTO;
+import org.unicauca.docenteservice.fachadaServices.rest.Asignatura;
 import org.unicauca.docenteservice.fachadaServices.rest.MessageResponseDTO;
 import org.unicauca.docenteservice.fachadaServices.rest.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +30,6 @@ public class DocenteService implements IDocenteService{
     @Autowired
     private RestTemplate restTemplate;
 
-
     @Override
     public DocenteDTO agregarDocente(DocenteDTO docente) {
         DocenteDTO docenteDTO = null;
@@ -44,15 +45,20 @@ public class DocenteService implements IDocenteService{
                 .build();
 
         if(agregarUsuario(usuarioDTO).getStatusCode() == HttpStatus.OK){
-            System.out.println("Agregando docente");
+            System.out.println("Usuario agregado exitosamente, procediendo a agregar docente");
+            System.out.println("Agregando docente...");
             Docente docenteEntity = this.modelMapper.map(docente, Docente.class);
+            System.out.println("Procediendo a validar asignaturas a agregar");
+
+            if(docenteEntity.getAsignaturas()!=null){
+                docenteEntity.setAsignaturas(encontrarAsignaturas(docente.getAsignaturas()));
+            }
             docenteRepository.save(docenteEntity);
             docenteDTO = modelMapper.map(docenteEntity, DocenteDTO.class);
         }
 
         return docenteDTO;
     }
-
 
 
     @Override
@@ -67,16 +73,23 @@ public class DocenteService implements IDocenteService{
 
 
         if(editarUsuario(usuarioDTO,id).getStatusCode() == HttpStatus.CREATED){
-            Docente docenteEntity=docenteRepository.findByIdentificacion(id);
-            docenteEntity.setNombres(docente.getNombres());
-            docenteEntity.setApellidos(docente.getApellidos());
-            docenteEntity.setEmail(docente.getEmail());
-            docenteEntity.setTituloAcademico(docente.getTituloAcademico());
-            docenteEntity.setEstado(docente.getEstado());
-            docenteEntity.setContrasenia(docente.getContrasenia());
-            docenteEntity.setTipoDocente(docente.getTipoDocente());
-            docenteRepository.save(docenteEntity);
-            docenteDTO = modelMapper.map(docenteEntity, DocenteDTO.class);
+
+            Optional<Docente> optionalDocente=docenteRepository.findByIdentificacion(id);
+            if(optionalDocente.isPresent()){
+                Docente docenteEntity = optionalDocente.get();
+                docenteEntity.setNombres(docente.getNombres());
+                docenteEntity.setApellidos(docente.getApellidos());
+                docenteEntity.setEmail(docente.getEmail());
+                docenteEntity.setTituloAcademico(docente.getTituloAcademico());
+                docenteEntity.setEstado(docente.getEstado());
+                docenteEntity.setContrasenia(docente.getContrasenia());
+                docenteEntity.setTipoDocente(docente.getTipoDocente());
+                if(docente.getAsignaturas()!=null){
+                    docenteEntity.setAsignaturas(encontrarAsignaturas(docente.getAsignaturas()));
+                }
+                docenteRepository.save(docenteEntity);
+                docenteDTO = modelMapper.map(docenteEntity, DocenteDTO.class);
+            }
         }
         return docenteDTO;
     }
@@ -100,6 +113,8 @@ public class DocenteService implements IDocenteService{
         return bandera;
     }
 
+
+
     @Override
     public List<DocenteDTO> listarDocentes() {
         List<Docente> docentes = docenteRepository.findAll();
@@ -113,7 +128,7 @@ public class DocenteService implements IDocenteService{
     private ResponseEntity<User> editarUsuario(User user, String id) {
         ResponseEntity<User> response = null;
 
-        String url = "http://localhost:5000/api/test/"+id;
+        String url = "http://localhost:8005/api/test/"+id;
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         HttpEntity<User> requestEntity = new HttpEntity<>(user, headers);
@@ -128,7 +143,7 @@ public class DocenteService implements IDocenteService{
     private ResponseEntity<MessageResponseDTO> agregarUsuario(User usuarioDTO) {
 
         ResponseEntity<MessageResponseDTO> response = null;
-        String url = "http://localhost:5000/api/auth/signup";
+        String url = "http://localhost:8005/api/auth/signup";
         // Configurar encabezados
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
@@ -153,4 +168,58 @@ public class DocenteService implements IDocenteService{
         return response;
 
     }
+
+
+    public List<Integer> encontrarAsignaturas(List<Integer> ids) {
+        List<Integer> idsEncontrados = new ArrayList<>();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        for (Integer id : ids) {
+            String url = "http://localhost:8003/asignaturas/" + id;
+            HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+            try {
+                ResponseEntity<Asignatura> response = restTemplate.exchange(
+                        url,
+                        HttpMethod.GET,
+                        requestEntity,
+                        Asignatura.class
+                );
+                if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                    // Si la asignatura fue encontrada, agregar el ID
+                    idsEncontrados.add(id);
+                }
+            } catch (Exception e) {
+                // Log o manejo del error (opcional)
+                e.printStackTrace();
+            }
+        }
+
+        // Si no se encontraron IDs, devolver `null`
+        return idsEncontrados.isEmpty() ? null : idsEncontrados;
+    }
+
+    @Override
+    public DocenteDTO agregarAsignatura(String idDocente, List<Integer> idsAsignaturas) {
+
+        DocenteDTO docenteDTO = null;
+        //Capturar el docente
+        Optional<Docente> optionalDocente = docenteRepository.findByIdentificacion(idDocente);
+        if(optionalDocente.isPresent()){
+            Docente docenteEntity = optionalDocente.get();
+            List<Integer>asignaturas=encontrarAsignaturas(idsAsignaturas);
+            for(Integer id : asignaturas){
+                if(!docenteEntity.getAsignaturas().contains(id)){
+                    System.out.println("Asignando nueva asignatura a el docente");
+                    docenteEntity.getAsignaturas().add(id);
+                }
+            }
+            docenteDTO = modelMapper.map(optionalDocente.get(), DocenteDTO.class);
+            docenteRepository.save(docenteEntity);
+        }
+
+        return docenteDTO;
+    }
+
+
 }

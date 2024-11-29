@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.unicauca.docenteservice.fachadaServices.rest.Asignatura;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -47,4 +50,12 @@ public class Docente {
     @Column
     @Enumerated(EnumType.STRING)
     private ETipoDocente tipoDocente;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "docente_asignaturas",
+            joinColumns = @JoinColumn(name = "docente_id")
+    )
+    @Column(name = "asignatura_id")
+    private List<Integer> asignaturas;
 }

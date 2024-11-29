@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d10c87e9-64fd-4346-83d8-7eb3ff805bea" name="Changes" comment="Agregar en microservicio docente">
+    <list default="true" id="d10c87e9-64fd-4346-83d8-7eb3ff805bea" name="Changes" comment="Microservicio docente antes de consumir asignatura">
+      <change afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/rest/Asignatura.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaAccesoADatos/models/Docente.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaAccesoADatos/models/Docente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaAccesoADatos/repositories/IDocenteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaAccesoADatos/repositories/IDocenteRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaControladores/DocenteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/capaControladores/DocenteRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/DTO/DocenteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/DTO/DocenteDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/services/DocenteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/services/DocenteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/services/IDocenteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/java/org/unicauca/docenteservice/fachadaServices/services/IDocenteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docente-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/docente-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservice-asginatura/src/main/java/com/unicauca/microservice_asginatura/controller/AsignaturaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice-asginatura/src/main/java/com/unicauca/microservice_asginatura/controller/AsignaturaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservice-asginatura/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/microservice-asginatura/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rubrica-criterio-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/rubrica-criterio-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/org/unicauca/usuarioservice/configuracionSeguridad/fachada/services/CrudImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/org/unicauca/usuarioservice/configuracionSeguridad/fachada/services/CrudImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/org/unicauca/usuarioservice/controladores/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/org/unicauca/usuarioservice/controladores/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +116,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MicroserviceAsginaturaApplication">
+  <component name="RunManager" selected="Spring Boot.DocenteServiceApplication">
     <configuration name="UsuarioServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.unicauca.usuarioservice.UsuarioServiceApplication" />
       <module name="usuario-service" />
@@ -219,7 +215,8 @@
       <workItem from="1732721987798" duration="1573000" />
       <workItem from="1732748577682" duration="5466000" />
       <workItem from="1732814722454" duration="3193000" />
-      <workItem from="1732842458448" duration="8624000" />
+      <workItem from="1732842458448" duration="9759000" />
+      <workItem from="1732890801569" duration="9471000" />
     </task>
     <task id="LOCAL-00001" summary="Primer commit rap y competencias por programa">
       <option name="closed" value="true" />
@@ -285,7 +282,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732817037845</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Microservicio docente antes de consumir asignatura">
+      <option name="closed" value="true" />
+      <created>1732851365144</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732851365144</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Microservicio docente antes de consumir asignatura">
+      <option name="closed" value="true" />
+      <created>1732851373006</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732851373006</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +310,7 @@
     <MESSAGE value="Microservicio usuario completo" />
     <MESSAGE value="Inicio microservicio docente" />
     <MESSAGE value="Agregar en microservicio docente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregar en microservicio docente" />
+    <MESSAGE value="Microservicio docente antes de consumir asignatura" />
+    <option name="LAST_COMMIT_MESSAGE" value="Microservicio docente antes de consumir asignatura" />
   </component>
 </project>

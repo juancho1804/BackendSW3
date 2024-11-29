@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unicauca.docenteservice.fachadaServices.DTO.DocenteDTO;
+import org.unicauca.docenteservice.fachadaServices.rest.Asignatura;
 import org.unicauca.docenteservice.fachadaServices.services.IDocenteService;
 
 import java.util.List;
@@ -51,4 +52,13 @@ public class DocenteRestController {
         }
         return ResponseEntity.ok(docentes); // 200 OK
     }
+
+    @PatchMapping("/agregarAsignatura/{identificacion}")
+    public ResponseEntity<DocenteDTO>agregarAsignatura(@PathVariable("identificacion") String identificacion, @RequestBody List<Integer> asignatura){
+        if(docenteService.agregarAsignatura(identificacion,asignatura)!=null){
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
 }
