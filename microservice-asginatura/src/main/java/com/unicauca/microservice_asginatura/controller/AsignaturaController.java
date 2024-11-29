@@ -80,7 +80,7 @@ public class AsignaturaController {
     /**
      * Editar
      *
-     * @param Asignatura asignatura a editar
+     * @param asignatura asignatura a editar
      * @param id       identificador de la asignatura
      * @return asignatura  editado
      * @throws ResourceNotFoundException recurso no encontrado
@@ -111,7 +111,7 @@ public class AsignaturaController {
     /**
      * cambair de estado
      * @param id id de la asignatura
-     * @param nuevoEstdo estado de la asignatura
+     * @param nuevoEstado estado de la asignatura
      */
     @RequestMapping(value = "{id}/cambiar-estado", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody

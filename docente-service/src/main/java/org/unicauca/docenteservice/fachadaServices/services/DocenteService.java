@@ -6,12 +6,15 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.unicauca.docenteservice.capaAccesoADatos.models.Docente;
+import org.unicauca.docenteservice.capaAccesoADatos.models.EEstado;
 import org.unicauca.docenteservice.capaAccesoADatos.repositories.IDocenteRepository;
 import org.unicauca.docenteservice.fachadaServices.DTO.DocenteDTO;
 import org.unicauca.docenteservice.fachadaServices.rest.MessageResponseDTO;
 import org.unicauca.docenteservice.fachadaServices.rest.User;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DocenteService implements IDocenteService{
@@ -24,8 +27,6 @@ public class DocenteService implements IDocenteService{
 
     @Autowired
     private RestTemplate restTemplate;
-
-
 
 
     @Override
@@ -53,21 +54,77 @@ public class DocenteService implements IDocenteService{
     }
 
 
+
     @Override
-    public DocenteDTO actualizarDocente(DocenteDTO docente) {
-        return null;
+    public DocenteDTO actualizarDocente(DocenteDTO docente, String id) {
+
+        DocenteDTO docenteDTO = null;
+        User usuarioDTO = User.builder()
+                        .nombres(docente.getNombres())
+                        .apellidos(docente.getApellidos())
+                        .email(docente.getEmail())
+                        .contrasenia(docente.getContrasenia()).build();
+
+
+        if(editarUsuario(usuarioDTO,id).getStatusCode() == HttpStatus.CREATED){
+            Docente docenteEntity=docenteRepository.findByIdentificacion(id);
+            docenteEntity.setNombres(docente.getNombres());
+            docenteEntity.setApellidos(docente.getApellidos());
+            docenteEntity.setEmail(docente.getEmail());
+            docenteEntity.setTituloAcademico(docente.getTituloAcademico());
+            docenteEntity.setEstado(docente.getEstado());
+            docenteEntity.setContrasenia(docente.getContrasenia());
+            docenteEntity.setTipoDocente(docente.getTipoDocente());
+            docenteRepository.save(docenteEntity);
+            docenteDTO = modelMapper.map(docenteEntity, DocenteDTO.class);
+        }
+        return docenteDTO;
     }
 
     @Override
-    public DocenteDTO eliminarDocente(DocenteDTO docente) {
-        return null;
+    public boolean cambiarEstado(int id) {
+        boolean bandera = false;
+        Optional<Docente> docente = docenteRepository.findById(id);
+        if(docente.isPresent()){
+            Docente docenteEntity = docente.get();
+            if(docenteEntity.getEstado().equals(EEstado.ACTIVO)){
+                System.out.println("Cambiando estado a inactivo");
+                docenteEntity.setEstado(EEstado.INACTIVO);
+            }else {
+                System.out.println("Cambiando estado a activo");
+                docenteEntity.setEstado(EEstado.ACTIVO);
+            }
+            docenteRepository.save(docenteEntity);
+            bandera = true;
+        }
+        return bandera;
     }
 
     @Override
     public List<DocenteDTO> listarDocentes() {
-        return List.of();
+        List<Docente> docentes = docenteRepository.findAll();
+        return docentes.stream()
+                .map(docente -> modelMapper.map(docente, DocenteDTO.class))
+                .collect(Collectors.toList());
     }
 
+
+
+    private ResponseEntity<User> editarUsuario(User user, String id) {
+        ResponseEntity<User> response = null;
+
+        String url = "http://localhost:5000/api/test/"+id;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        HttpEntity<User> requestEntity = new HttpEntity<>(user, headers);
+        try{
+            response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, User.class);
+            System.out.println(response.getBody());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return response;
+    }
     private ResponseEntity<MessageResponseDTO> agregarUsuario(User usuarioDTO) {
 
         ResponseEntity<MessageResponseDTO> response = null;
