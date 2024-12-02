@@ -13,6 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("criterios")
+@CrossOrigin(value = "http://localhost:4200",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class CriterioController {
     @Autowired
     private ICriterioService criterioService;

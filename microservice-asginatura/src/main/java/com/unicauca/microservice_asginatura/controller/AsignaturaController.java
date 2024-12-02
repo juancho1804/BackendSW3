@@ -16,6 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("asignaturas")
+@CrossOrigin(value = "http://localhost:4200",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class AsignaturaController {
     @Autowired
     private IAsignaturaService asignaturaService;
