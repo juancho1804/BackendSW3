@@ -12,8 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/competenciasrap")
-@CrossOrigin(value = "http://localhost:4200",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class RapRestController {
 
     @Autowired

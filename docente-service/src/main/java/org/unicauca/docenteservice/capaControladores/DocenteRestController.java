@@ -11,6 +11,7 @@ import org.unicauca.docenteservice.fachadaServices.services.IDocenteService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 @RequestMapping("/docentes")
 public class DocenteRestController {
     @Autowired
