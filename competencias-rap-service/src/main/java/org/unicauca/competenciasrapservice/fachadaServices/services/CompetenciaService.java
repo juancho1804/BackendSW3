@@ -22,15 +22,19 @@ public class CompetenciaService implements ICompetenciaService{
 
     @Override
     public List<CompetenciaDTO> listarCompetencias() {
+        // Recuperar la lista de competencias del repositorio
         List<Competencia> competencias = this.competenciaRepositorio.findAll();
-        if(!competenciaRepositorio.findAll().isEmpty()){
-            List<CompetenciaDTO>competenciaDTOS = this.modelMapper.map(competencias, List.class);
-            return competenciaDTOS;
-        }else{
-            throw new EntityNotFoundException("No hay competencias");
+
+        // Validar si la lista está vacía
+        if (competencias.isEmpty()) {
+            throw new EntityNotFoundException("No hay competencias disponibles");
         }
 
+        // Mapear la lista a DTOs
+        return competencias.stream()
+                .map(competencia -> this.modelMapper.map(competencia, CompetenciaDTO.class)).collect(Collectors.toList());
     }
+
 
     @Override
     public CompetenciaDTO agregarCompetencia(CompetenciaDTO competencia) {

@@ -19,11 +19,18 @@ public class CompetenciaRestController {
     private ICompetenciaService competenciaService;
 
     @GetMapping("/competencias")
+    public List<CompetenciaDTO> findAll(){
+        return competenciaService.listarCompetencias();
+    }
+/*
+    @GetMapping("/competencias")
     public ResponseEntity<List<CompetenciaDTO>> findAll(){
         List<CompetenciaDTO> lista = competenciaService.listarCompetencias();
         ResponseEntity<List<CompetenciaDTO>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;
     }
+
+ */
 
 
     @PostMapping("/competencias")

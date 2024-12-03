@@ -11,6 +11,7 @@ import org.unicauca.competenciasrapservice.fachadaServices.DTO.RapDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RapService implements IRapService{
@@ -23,12 +24,12 @@ public class RapService implements IRapService{
     @Override
     public List<RapDTO> listarRAP() {
         List<Rap> raps = rapRepositorio.findAll();
-        if(!rapRepositorio.findAll().isEmpty()){
-            List<RapDTO> rapDTOS = this.modelMapper.map(raps,List.class);
-            return rapDTOS;
-        }else{
-            throw new EntityNotFoundException("No hay resultados de aprendizaje por programa registrados");
+        if(raps.isEmpty()){
+            throw new EntityNotFoundException("No hay resultados de aprendizaje registrados");
         }
+        return raps.stream()
+                .map(rap -> this.modelMapper.map(rap,RapDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
