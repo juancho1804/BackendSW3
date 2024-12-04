@@ -46,11 +46,12 @@ public class AsignaturaController {
         Asignatura asignatura = asignaturaService.findById(id);
         return asignatura;
     }
+    /*
     @RequestMapping(value = "{id}/obtenerAsignaturaCompetencia", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<AsignaturaDTO> obtenerAsignatura(@PathVariable Long id) {
         AsignaturaDTO asignatura = asignaturaService.obtenerAsignaturaConCompetencias(id);
         return ResponseEntity.ok(asignatura);
-    }
+    }*/
 
     /**
      * Crear una asignatura

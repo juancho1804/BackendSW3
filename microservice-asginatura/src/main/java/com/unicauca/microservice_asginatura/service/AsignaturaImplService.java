@@ -4,10 +4,12 @@ package com.unicauca.microservice_asginatura.service;
 import com.unicauca.microservice_asginatura.dtos.AsignaturaDTO;
 import com.unicauca.microservice_asginatura.dtos.CompetenciaDTO;
 import com.unicauca.microservice_asginatura.entities.Asignatura;
+import com.unicauca.microservice_asginatura.entities.AsignaturaCompetencia;
 import com.unicauca.microservice_asginatura.exceptions.AsignaturaDomainException;
 import com.unicauca.microservice_asginatura.exceptions.AsignaturaError;
 import com.unicauca.microservice_asginatura.exceptions.ResourceNotFoundException;
 import com.unicauca.microservice_asginatura.client.CompetenciaClient;
+import com.unicauca.microservice_asginatura.persisence.AsignaturaCompetenciaRepository;
 import com.unicauca.microservice_asginatura.persisence.AsignaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AsignaturaImplService implements  IAsignaturaService{
@@ -29,6 +32,81 @@ public class AsignaturaImplService implements  IAsignaturaService{
     @Autowired
     private RubricaRepository rubricaRepository;
     */
+
+    @Autowired
+    private AsignaturaCompetenciaRepository asignaturaCompetenciaRepository;
+    /*
+    @Transactional
+    public Asignatura crearAsignaturaConCompetencias(AsignaturaDTO asignaturaDTO) {
+        // Validar competencias con el microservicio
+        List<CompetenciaDTO> competenciasValidas = competenciaClient.validarCompetencias(asignaturaDTO.getCompetenciasIds());
+        if (competenciasValidas.size() != asignaturaDTO.getCompetenciasIds().size()) {
+            throw new IllegalArgumentException("Algunas competencias no son válidas.");
+        }
+
+        // Crear la asignatura
+        Asignatura asignatura = Asignatura.builder()
+                .nombre(asignaturaDTO.getNombre())
+                .descripcion(asignaturaDTO.getDescripcion())
+                .numCredito(asignaturaDTO.getNumCredito())
+                .semestreAsignatura(asignaturaDTO.getSemestreAsignatura())
+                .estado(asignaturaDTO.getEstado())
+                .build();
+
+        // Guardar la asignatura
+        Asignatura savedAsignatura = asignaturaRepository.save(asignatura);
+
+        // Crear las relaciones en la tabla intermedia
+        List<AsignaturaCompetencia> relaciones = competenciasValidas.stream()
+                .map(competencia -> {
+                    AsignaturaCompetencia relacion = new AsignaturaCompetencia();
+                    relacion.setAsignatura(savedAsignatura);
+                    relacion.setCompetenciaId(competencia.getId());
+                    return relacion;
+                })
+                .collect(Collectors.toList());
+
+        asignaturaCompetenciaRepository.saveAll(relaciones);
+
+        return savedAsignatura;
+    }*/
+    @Transactional
+    @Override
+    public Asignatura crearAsignaturaConCompetencias(AsignaturaDTO asignaturaDTO) {
+        // Validar competencias llamando al microservicio de competencias
+        List<CompetenciaDTO> competenciasValidas = competenciaClient.validarCompetencias(asignaturaDTO.getCompetenciasIds());
+
+        // Comprobar si todos los IDs son válidos
+        if (competenciasValidas.size() != asignaturaDTO.getCompetenciasIds().size()) {
+            throw new IllegalArgumentException("Algunas competencias no son válidas");
+        }
+
+        // Crear la entidad Asignatura
+        Asignatura asignatura = Asignatura.builder()
+                .nombre(asignaturaDTO.getNombre())
+                .descripcion(asignaturaDTO.getDescripcion())
+                .numCredito(asignaturaDTO.getNumCredito())
+                .semestreAsignatura(asignaturaDTO.getSemestreAsignatura())
+                .estado(asignaturaDTO.getEstado())
+                .build();
+
+        // Guardar la asignatura en la base de datos
+        Asignatura savedAsignatura = asignaturaRepository.save(asignatura);
+
+        // Crear las relaciones en la tabla intermedia
+        List<AsignaturaCompetencia> relaciones = competenciasValidas.stream()
+                .map(competencia -> {
+                    AsignaturaCompetencia asignaturaCompetencia = new AsignaturaCompetencia();
+                    asignaturaCompetencia.setAsignatura(savedAsignatura);
+                    asignaturaCompetencia.setCompetenciaId(competencia.getId());
+                    return asignaturaCompetencia;
+                })
+                .collect(Collectors.toList());
+
+        asignaturaCompetenciaRepository.saveAll(relaciones);
+
+        return savedAsignatura;
+    }
 
 
     @Override
@@ -47,6 +125,8 @@ public class AsignaturaImplService implements  IAsignaturaService{
 
         return asignatura;
     }
+    /*
+    @Override
     public AsignaturaDTO obtenerAsignaturaConCompetencias(Long id) {
         // Obtener la asignatura
         Asignatura asignatura = asignaturaRepository.findById(id)
@@ -66,7 +146,7 @@ public class AsignaturaImplService implements  IAsignaturaService{
         response.setCompetencias(competencias);
 
         return response;
-    }
+    }*/
 
     @Transactional
     @Override
@@ -153,6 +233,7 @@ public class AsignaturaImplService implements  IAsignaturaService{
 
         return asignaturaRepository.save(asignatura);
     }*/
+    /*
     @Override
     @Transactional
     public Asignatura crearAsignaturaConCompetencias(AsignaturaDTO asignaturaDTO) {
@@ -179,7 +260,7 @@ public class AsignaturaImplService implements  IAsignaturaService{
         // Guardar en la base de datos
         return asignaturaRepository.save(asignatura);
     }
-
+*/
 
     /**
      * Aplica validaciones o reglas del dominio para una asignatura. Antes de ser
@@ -199,4 +280,5 @@ public class AsignaturaImplService implements  IAsignaturaService{
         return errors;
 
     }
+
 }

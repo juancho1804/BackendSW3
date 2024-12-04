@@ -20,5 +20,5 @@ public interface IAsignaturaService {
 
     public Asignatura  cambiarEstadoAsignatura(Long id,Boolean nuevoEstado) throws ResourceNotFoundException;
     public Asignatura crearAsignaturaConCompetencias(AsignaturaDTO asignaturaDTO);
-    public AsignaturaDTO obtenerAsignaturaConCompetencias(Long id);
+    //public AsignaturaDTO obtenerAsignaturaConCompetencias(Long id);
 }
