@@ -1,5 +1,6 @@
 package com.unicauca.microservice_asginatura.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.unicauca.microservice_asginatura.entities.AsignaturaCompetencia;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,14 +15,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 @Table(name = "periodo") // Asegúrate de que el nombre coincide con la tabla en la base de datos
 public class Periodo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @OneToOne
     @JoinColumn(name = "asignatura_competencia_id", nullable = false)
+    @JsonBackReference
     private AsignaturaCompetencia asignaturaCompetencia;
 
     @Column(name = "periodo_ini", nullable = false)

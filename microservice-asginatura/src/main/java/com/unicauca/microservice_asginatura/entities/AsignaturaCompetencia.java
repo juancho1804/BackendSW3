@@ -1,5 +1,6 @@
 package com.unicauca.microservice_asginatura.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class AsignaturaCompetencia {
     private Integer competenciaId;
 
     // Relación uno a uno con Periodo
+    @JsonManagedReference
     @OneToOne(mappedBy = "asignaturaCompetencia", cascade = CascadeType.ALL, orphanRemoval = true)
     private Periodo periodo; // Periodo asociado
 }
