@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import com.unicauca.microservice_asginatura.entities.Periodo;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +21,8 @@ public class AsignaturaCompetencia {
 
     @Column(name = "competencia_id", nullable = false)
     private Integer competenciaId;
+
+    // Relación uno a uno con Periodo
+    @OneToOne(mappedBy = "asignaturaCompetencia", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Periodo periodo; // Periodo asociado
 }

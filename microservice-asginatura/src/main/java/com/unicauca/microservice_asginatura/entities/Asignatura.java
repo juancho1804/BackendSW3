@@ -28,4 +28,5 @@ public class Asignatura implements Serializable {
 
     @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AsignaturaCompetencia> competencias;
+
 }
