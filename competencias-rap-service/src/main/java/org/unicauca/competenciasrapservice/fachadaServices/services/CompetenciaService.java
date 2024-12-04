@@ -6,7 +6,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unicauca.competenciasrapservice.capaAccesoADatos.models.Competencia;
+import org.unicauca.competenciasrapservice.capaAccesoADatos.models.Rap;
 import org.unicauca.competenciasrapservice.capaAccesoADatos.repositories.ICompetenciaRepositorio;
+import org.unicauca.competenciasrapservice.capaAccesoADatos.repositories.IRapRepositorio;
+import org.unicauca.competenciasrapservice.capaControladores.controladorExcepciones.excepcionesPropias.EntidadNoExisteException;
+import org.unicauca.competenciasrapservice.capaControladores.controladorExcepciones.excepcionesPropias.ReglaNegocioExcepcion;
 import org.unicauca.competenciasrapservice.fachadaServices.DTO.CompetenciaDTO;
 
 import java.util.List;
@@ -18,19 +22,25 @@ public class CompetenciaService implements ICompetenciaService{
     @Autowired
     private ICompetenciaRepositorio competenciaRepositorio;
     @Autowired
+    private IRapRepositorio rapRepositorio;
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public List<CompetenciaDTO> listarCompetencias() {
+        // Recuperar la lista de competencias del repositorio
         List<Competencia> competencias = this.competenciaRepositorio.findAll();
-        if(!competenciaRepositorio.findAll().isEmpty()){
-            List<CompetenciaDTO>competenciaDTOS = this.modelMapper.map(competencias, List.class);
-            return competenciaDTOS;
-        }else{
-            throw new EntityNotFoundException("No hay competencias");
+
+        // Validar si la lista está vacía
+        if (competencias.isEmpty()) {
+            throw new EntityNotFoundException("No hay competencias disponibles");
         }
 
+        // Mapear la lista a DTOs
+        return competencias.stream()
+                .map(competencia -> this.modelMapper.map(competencia, CompetenciaDTO.class)).collect(Collectors.toList());
     }
+
 
     @Override
     public CompetenciaDTO agregarCompetencia(CompetenciaDTO competencia) {
@@ -65,12 +75,25 @@ public class CompetenciaService implements ICompetenciaService{
     public boolean eliminarCompetencia(int id) {
         Optional<Competencia> optionalCompetencia = competenciaRepositorio.findById(id);
         if (optionalCompetencia.isPresent()) {
-            competenciaRepositorio.deleteById(id);
+            Competencia competencia = optionalCompetencia.get();
+
+            // Verificar si existen RAPs asociados
+            System.out.println(competencia.getId());
+            List<Rap> rapsAsociados = rapRepositorio.findByCompetenciaId(competencia.getId());
+            if (!rapsAsociados.isEmpty()) {
+                System.out.println("Entro aca");
+                throw new ReglaNegocioExcepcion("No se puede eliminar la competencia porque tiene RAPs asociados.");
+            }else{
+                competenciaRepositorio.deleteById(id);
+            }
             return true; // Eliminación exitosa
         } else {
-            throw new EntityNotFoundException("La competencia con el ID " + id + " no existe");
+            System.out.println("NO ENTRO");
+            throw new EntidadNoExisteException("La competencia con el ID " + id + " no existe");
         }
     }
+
+
     @Override
     public List<Competencia> obtenerCompetenciasPorIds(List<Integer> ids) {
         return competenciaRepositorio.findAllById(ids);

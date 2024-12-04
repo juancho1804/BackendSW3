@@ -19,11 +19,18 @@ public class CompetenciaRestController {
     private ICompetenciaService competenciaService;
 
     @GetMapping("/competencias")
+    public List<CompetenciaDTO> findAll(){
+        return competenciaService.listarCompetencias();
+    }
+/*
+    @GetMapping("/competencias")
     public ResponseEntity<List<CompetenciaDTO>> findAll(){
         List<CompetenciaDTO> lista = competenciaService.listarCompetencias();
         ResponseEntity<List<CompetenciaDTO>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;
     }
+
+ */
 
 
     @PostMapping("/competencias")
@@ -42,9 +49,9 @@ public class CompetenciaRestController {
     }
 
     @DeleteMapping("/competencias")
-    public ResponseEntity<Boolean> delete(@RequestParam int id){
+    public ResponseEntity<Boolean> delete(@RequestParam("id") int id){
         Boolean resp = competenciaService.eliminarCompetencia(id);
-        ResponseEntity<Boolean> response = new ResponseEntity<>(resp, HttpStatus.NO_CONTENT);
+        ResponseEntity<Boolean> response = new ResponseEntity<>(resp, HttpStatus.OK);
         return response;
     }
     /*
